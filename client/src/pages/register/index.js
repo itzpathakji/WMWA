@@ -1,12 +1,11 @@
 import React from 'react'
 
-function register
+function Register
 () {
   return (
-    <div>register
-        
+    <div>Register
     </div>
   )
 }
 
-export default register
+export default Register
