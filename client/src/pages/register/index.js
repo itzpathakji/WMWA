@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Register
 () {
@@ -8,4 +8,4 @@ function Register
   )
 }
 
-export default Register
+export default Register;
