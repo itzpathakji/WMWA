@@ -10,7 +10,12 @@ function Login() {
 
   return (
     <div className='grid grid-cols-2'>
-      <div className='bg-primary h-screen'></div>
+      <div className='bg-primary h-screen flex flex-col justify-center items-center'>
+        
+        <h1 className="text-6xl text-white">PROJECT-MANAGER</h1>
+        <span className='text-white mt-5'>One Place To Manage All Your Projects</span>
+        
+        </div>
       <div className='flex justify-center items-center'>
         <div className='w-[425px]'>
           <h1 className='text-2xl text-gray-700'>LOGIN INTO YOUR ACCOUNT</h1>
