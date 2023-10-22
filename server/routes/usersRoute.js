@@ -8,7 +8,7 @@ router.post('/register',async (req,res) => {
     try{
         //check if user already exist then throw error
 
-        const userExists = User.findOne({ email: req.body.email });
+        const userExists = await User.findOne({ email: req.body.email });
         if(userExists){
             throw new Error("User already exists");
         }
@@ -20,7 +20,7 @@ router.post('/register',async (req,res) => {
 
         // Save the new User
 
-        const user = new User(req.body);
+        const user = new User( req.body );
         await user.save();
         res.send({
             success: true,
@@ -55,11 +55,13 @@ router.post("/login", async (req,res) => {
         }
         
         // assign web token if password is correct to send it to front end
-        const token = jwt.sign({ userId : user._id }, process.env.WMWA, {expiresIn: "1d"});
+        const token = jwt.sign({ userId: user._id }, process.env.jwt_secret, {
+            expiresIn: "1d" });
 
         res.send({
             success: true,
-            data: token
+            data: token,
+            message: "User logged in successfully"
         });
 
     }catch(error){

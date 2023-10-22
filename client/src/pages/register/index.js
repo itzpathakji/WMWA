@@ -1,12 +1,26 @@
 import React from 'react';
-import { Form, Input, Button, Divider } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
+import Divider from '../../components/Divider';
+import { RegisterUser } from '../../apicalls/users';
 
 function Register() {
 
-  const onFinish = (values) => {
-    console.log("success:",values);
-  }
+  const onFinish = async (values) => {
+    try{
+      const response  = await RegisterUser(values);
+      if(response.success)
+      {
+        message.success(response.message);
+      }
+      else
+      {
+        throw new Error(response.message);
+      }
+    }catch(error){
+      message.error(error.message);
+    }
+  };
 
   return (
     <div className='grid grid-cols-2'>
@@ -21,10 +35,10 @@ function Register() {
           <h1 className='text-2xl text-gray-700'>LET'S GET YOU STARTED</h1>
           <Divider />
           <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="First Name" name="firstname">
+          <Form.Item label="First Name" name="firstName">
               <Input />
             </Form.Item>
-            <Form.Item label="Last Name" name="lastname">
+            <Form.Item label="Last Name" name="lastName">
               <Input />
             </Form.Item>
           <Form.Item label="Email" name="email">
