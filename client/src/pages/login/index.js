@@ -32,7 +32,7 @@ function Login() {
         </div>
       <div className='flex justify-center items-center'>
         <div className='w-[425px]'>
-          <h1 className='text-2xl text-gray-700'>LOGIN INTO YOUR ACCOUNT</h1>
+          <h1 className='text-2xl text-gray-700 '>LOGIN INTO YOUR ACCOUNT </h1>
           <Divider />
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item label="Email" name="email">
