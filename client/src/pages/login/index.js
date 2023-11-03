@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
 import Divider from '../../components/Divider';
@@ -7,29 +7,35 @@ import { LoginUser } from "../../apicalls//users";
 function Login() {
 
   const onFinish = async (values) => {
-    try{
+    try {
       const response = await LoginUser(values);
-      if(response.success){
-        localStorage.setItem("token",response.data);
+      if (response.success) {
+        localStorage.setItem("token", response.data);
         message.success(response.message);
         window.location.href = "/";
       }
-      else{
+      else {
         throw new Error(response.message);
       }
-    }catch(error){
+    } catch (error) {
       message.error(error.message);
     }
-  }
+  };
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      window.location.href = "/";
+    }
+  }, []);
+  
   return (
     <div className='grid grid-cols-2'>
       <div className='bg-primary h-screen flex flex-col justify-center items-center'>
-        
+
         <h1 className="text-6xl text-white">PROJECT-MANAGER</h1>
         <span className='text-white mt-5'>One Place To Manage All Your Projects</span>
-        
-        </div>
+
+      </div>
       <div className='flex justify-center items-center'>
         <div className='w-[425px]'>
           <h1 className='text-2xl text-gray-700 '>LOGIN INTO YOUR ACCOUNT </h1>

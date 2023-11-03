@@ -76,7 +76,7 @@ router.post("/login", async (req,res) => {
 // get logged in user
 router.get("/get-logged-in-user", authMiddleware ,async (req,res) => {
     try{
-        const user = User.findOne({ _id:req.body.userId });
+        const user = await User.findOne({ _id:req.body.userId });
 
         // remove the password from user object
         user.password = undefined;
