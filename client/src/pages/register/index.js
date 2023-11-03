@@ -12,7 +12,7 @@ function Register() {
       if(response.success)
       {
         message.success(response.message);
-        message('/login')
+        navigate('/login')
       }
       else
       {
