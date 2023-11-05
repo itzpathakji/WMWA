@@ -2,15 +2,18 @@ import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetLoggedInUser } from '../apicalls/users'
+import { Setuser } from '../redux/usersSlice';
+import { useSelector , useDispatch} from 'react-redux';
 
 function ProtectedPage({ children }) {
-  const navigate = useNavigate()
-  const [user, setuser] = useState(null)
-  const getUser = async () => {
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const {user} = useSelector((state) => state.users);
+const getUser = async () => { 
     try {
       const response = await GetLoggedInUser()
       if (response.success) {
-        setuser(response.data)
+          dispatch(Setuser(response.data))
       }
       else {
         throw new Error(response.message)
