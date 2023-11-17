@@ -1,8 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function Home() {
+  
+  const { user } = useSelector((state) => state.users);
+
   return (
-    <div>Home</div>
+    <div>
+      Hii {user?.firstName} {user?.lastName} , Welcome to Project Management Web-App.
+    </div>
   )
 }
 
