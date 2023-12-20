@@ -1,39 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button, message } from 'antd';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Divider from '../../components/Divider';
 import { RegisterUser } from '../../apicalls/users';
-import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SetLoading } from '../../redux/loadersSlice';
 
 function Register() {
   const navigate = useNavigate();
+  const {loading} = useSelector((state) => state.loaders);
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     try{
+      dispatch(SetLoading(true));
       const response  = await RegisterUser(values);
+      dispatch(SetLoading(false));
       if(response.success)
       {
         message.success(response.message);
-        navigate("/login");
+        navigate('/login')
       }
       else
       {
         throw new Error(response.message);
       }
     }catch(error){
+      dispatch(SetLoading(false));
       message.error(error.message);
     }
   };
 
   useEffect(() => {
-    if(localStorage.getItem("token")){
-      navigate("/")
+    if (localStorage.getItem("token")) {
+      navigate("/");
     }
-  },[]);
-
+  }, []);
 
   return (
     <div className='grid grid-cols-2'>
-      <div className='bg-primary h-screen flex flex-col justify-center items-center'>
+      <div className='bg-primary h-screen flex flex-col justify-center items-center '>
         
         <h1 className="text-6xl text-white">PROJECT-MANAGER</h1>
         <span className='text-white mt-5'>One Place To Manage All Your Projects</span>
@@ -57,7 +62,7 @@ function Register() {
               <Input type="password" />
             </Form.Item>
 
-            <Button type='primary' htmlType='submit' block>Register</Button>
+            <Button type='primary' htmlType='submit' block loading={loading}>{loading ? "loading" : "register" }</Button>
 
             <div className='flex justify-center mt-5'>
               <span>
