@@ -13,15 +13,15 @@ const getUser = async () => {
     try {
       const response = await GetLoggedInUser()
       if (response.success) {
-          dispatch(Setuser(response.data))
+          dispatch(Setuser(response.data));
       }
       else {
-        throw new Error(response.message)
+        throw new Error(response.message);
       }
     } catch (error) {
-      message.error(error.message)
-      localStorage.removeItem('token')
-      navigate('/login')
+      message.error(error.message);
+      localStorage.removeItem('token');
+      navigate('/login');
     }
   }
   useEffect(() => {
@@ -30,7 +30,8 @@ const getUser = async () => {
     } else {
       navigate('/login');
     }
-  }, [])
+  }, []);
+
   return (
     <div>
       <div className="flex justify-between items-center bg-primary text-white px-5 py-4 ">
@@ -50,9 +51,7 @@ const getUser = async () => {
               localStorage.removeItem("token");
               navigate("/login");
             }}
-          >
-
-          </i>
+          ></i>
         </div>
 
       </div>
@@ -64,7 +63,7 @@ const getUser = async () => {
 
     </div>
 
-  )
+  );
 }
 
 export default ProtectedPage
