@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
 import Divider from '../../components/Divider';
-import { LoginUser } from "../../apicalls//users";
+import { LoginUser } from "../../apicalls/users";
 import { useDispatch, useSelector } from 'react-redux';
 import { SetLoading } from '../../redux/loadersSlice';
 
