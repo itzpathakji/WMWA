@@ -2,7 +2,7 @@ import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetLoggedInUser } from '../apicalls/users'
-import { Setuser } from '../redux/usersSlice';
+import { SetUser } from '../redux/usersSlice';
 import { useSelector , useDispatch} from 'react-redux';
 
 function ProtectedPage({ children }) {
@@ -13,7 +13,7 @@ const getUser = async () => {
     try {
       const response = await GetLoggedInUser()
       if (response.success) {
-          dispatch(Setuser(response.data));
+          dispatch(SetUser(response.data));
       }
       else {
         throw new Error(response.message);
