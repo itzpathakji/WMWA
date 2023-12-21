@@ -6,7 +6,7 @@ function Home() {
   
   return (
     <div>
-      Heyy , {user?.firstName} {user?.lastName} , Welcome
+      Hey , {user?.firstName} {user?.lastName} , Welcome To WMWA.
     </div>
   );
 }

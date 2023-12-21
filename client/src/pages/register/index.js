@@ -4,17 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import Divider from '../../components/Divider';
 import { RegisterUser } from '../../apicalls/users';
 import { useDispatch, useSelector } from 'react-redux';
-import { SetLoading } from '../../redux/loadersSlice';
+import { SetButtonLoading } from '../../redux/loadersSlice';
 
 function Register() {
   const navigate = useNavigate();
-  const {loading} = useSelector((state) => state.loaders);
+  const { buttonLoading } = useSelector((state) => state.loaders);
   const dispatch = useDispatch();
   const onFinish = async (values) => {
     try{
-      dispatch(SetLoading(true));
+      dispatch(SetButtonLoading(true));
       const response  = await RegisterUser(values);
-      dispatch(SetLoading(false));
+      dispatch(SetButtonLoading(false));
       if(response.success)
       {
         message.success(response.message);
@@ -25,7 +25,7 @@ function Register() {
         throw new Error(response.message);
       }
     }catch(error){
-      dispatch(SetLoading(false));
+      dispatch(SetButtonLoading(false));
       message.error(error.message);
     }
   };
@@ -62,7 +62,7 @@ function Register() {
               <Input type="password" />
             </Form.Item>
 
-            <Button type='primary' htmlType='submit' block loading={loading}>{loading ? "loading" : "register" }</Button>
+            <Button type='primary' htmlType='submit' block loading={buttonLoading}>{buttonLoading ? "loading" : "register" }</Button>
 
             <div className='flex justify-center mt-5'>
               <span>
