@@ -5,6 +5,7 @@ import Divider from '../../components/Divider';
 import { RegisterUser } from '../../apicalls/users';
 import { useDispatch, useSelector } from 'react-redux';
 import { SetButtonLoading } from '../../redux/loadersSlice';
+import { getAntdFormInputRules } from '../../utils/helpers';
 
 function Register() {
   const navigate = useNavigate();
@@ -49,16 +50,16 @@ function Register() {
           <h1 className='text-2xl text-gray-700'>LET'S GET YOU STARTED</h1>
           <Divider />
           <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item label="First Name" name="firstName">
+          <Form.Item label="First Name" name="firstName" rules={getAntdFormInputRules}>
               <Input />
             </Form.Item>
-            <Form.Item label="Last Name" name="lastName">
+            <Form.Item label="Last Name" name="lastName" rules={getAntdFormInputRules}>
               <Input />
             </Form.Item>
-          <Form.Item label="Email" name="email">
+          <Form.Item label="Email" name="email" rules={getAntdFormInputRules}>
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password">
+            <Form.Item label="Password" name="password" rules={getAntdFormInputRules}>
               <Input type="password" />
             </Form.Item>
 
