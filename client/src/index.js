@@ -15,6 +15,7 @@ root.render(
         theme={{
           token: {
             colorPrimary: "#2E3840",
+            colorBorder:"#2E3840",
           },
         }}
     >
