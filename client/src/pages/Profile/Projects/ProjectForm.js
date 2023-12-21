@@ -1,15 +1,49 @@
-import { Form,Input, Modal } from 'antd'
+import { Form,Input, Modal, message } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import React from 'react'
+import {useDispatch, useSelector} from "react-redux";
+import { SetLoading } from "../../../redux/loadersSlice";
+import { CreateProject } from "../../../apicalls/projects";
 
 function ProjectForm({
     show,
     setShow,
-    reloadData
+    reloadData,
+    project
 }) {
     const formRef = React.useRef(null);
-    const onFinish = (values) => {
-        console.log(values);
+    const {user} = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+    const onFinish = async(values) => {
+        try {
+
+            dispatch(SetLoading(true));
+           if(project) {
+            //update Project
+
+           }
+           else{
+              // create Project
+              values.owner = user._id;
+              values.members =[{
+                user: user._id,
+                role: "owner",
+              },];
+              const response = await CreateProject(values);
+              if( response.success){
+                message.success(response.success);
+                reloadData();
+                setShow(false);
+                dispatch(SetLoading(false));
+              }
+              else{
+                throw new Error(response.error);
+              }
+              dispatch(SetLoading(false));
+           }
+        } catch (error) {
+            dispatch(SetLoading(false));
+        }
     }
     return (
         <Modal title="Add Project " 

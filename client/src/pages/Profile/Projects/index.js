@@ -9,7 +9,8 @@ function Projects() {
         <Button type='default' onClick={() => setShow(true)}> Add Project</Button>
         </div> 
 
-        {show && <ProjectForm show={show} setShow = {setShow} />}
+        {show && <ProjectForm show={show} setShow = {setShow} 
+          reloadData={()=>{}}/>}
         </div>
   )
 }
