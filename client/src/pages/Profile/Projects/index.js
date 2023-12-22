@@ -5,9 +5,10 @@ import ProjectForm from './ProjectForm'
 function Projects() {
    const [show ,setShow] = React.useState(false) 
   return (
-    <div> <div className='flex justify-end '>
+    <div> 
+      <div className='flex justify-end '>
         <Button type='default' onClick={() => setShow(true)}> Add Project</Button>
-        </div> 
+      </div> 
 
         {show && <ProjectForm show={show} setShow = {setShow} 
           reloadData={()=>{}}/>}

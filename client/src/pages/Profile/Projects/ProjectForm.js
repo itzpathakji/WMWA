@@ -46,7 +46,7 @@ function ProjectForm({
         }
     }
     return (
-        <Modal title="Add Project " 
+        <Modal title="Add Project" 
         open={show} 
         onCancel={() => setShow(false)} 
         centered 
