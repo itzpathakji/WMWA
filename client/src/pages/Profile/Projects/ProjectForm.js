@@ -34,7 +34,7 @@ function ProjectForm({
                 message.success(response.success);
                 reloadData();
                 setShow(false);
-                dispatch(SetLoading(false));
+               
               }
               else{
                 throw new Error(response.error);
