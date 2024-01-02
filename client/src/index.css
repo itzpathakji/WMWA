@@ -45,3 +45,11 @@ input:focus , textarea:focus{
   padding: 0px !important;
 }
 
+table{
+  border: 1px solid #bbbbbb !important;
+}
+
+i{
+  font-size: 20px !important;
+}
+
