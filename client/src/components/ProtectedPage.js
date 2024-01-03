@@ -43,9 +43,9 @@ const getUser = async () => {
 
           WMWA</h1>
         <div className='flex items-center bg-white px-5 py-2 rounded'>
-          <span className=' text-primary cursor-pointer underline' onClick={() => {
-            localStorage.removeItem("token");
-            navigate("login");
+          <span className=' text-primary cursor-pointer underline mr-2' onClick={() => {
+            // localStorage.removeItem("token");
+            navigate("/profile");
           }}>
 
             {user?.firstName}</span>
