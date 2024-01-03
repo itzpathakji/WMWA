@@ -3,7 +3,7 @@ import TextArea from "antd/es/input/TextArea";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetLoading } from "../../../redux/loadersSlice";
-import { CreateProject } from "../../../apicalls/projects";
+import { CreateProject, EditProject } from "../../../apicalls/projects";
 
 function ProjectForm({ show, setShow, reloadData, project }) {
   const formRef = React.useRef(null);
@@ -12,8 +12,10 @@ function ProjectForm({ show, setShow, reloadData, project }) {
   const onFinish = async (values) => {
     try {
       dispatch(SetLoading(true));
+      let response = null;
       if (project) {
-        //update Project
+        values._id = project._id;
+        response = await EditProject(values);
       } else {
         // create Project
         values.owner = user._id;
@@ -23,7 +25,8 @@ function ProjectForm({ show, setShow, reloadData, project }) {
             role: "owner",
           },
         ];
-        const response = await CreateProject(values);
+        response = await CreateProject(values);
+      }
         if (response.success) {
           message.success(response.message);
           reloadData();
@@ -32,14 +35,13 @@ function ProjectForm({ show, setShow, reloadData, project }) {
           throw new Error(response.error);
         }
         dispatch(SetLoading(false));
-      }
     } catch (error) {
       dispatch(SetLoading(false));
     }
-  };
+  }
   return (
     <Modal
-      title="Add Project"
+      title={project ? "EDIT PROJECT" : "CREATE PROJECT"}
       open={show}
       onCancel={() => setShow(false)}
       centered
@@ -49,7 +51,12 @@ function ProjectForm({ show, setShow, reloadData, project }) {
       }}
       okText="Save"
     >
-      <Form layout="vertical" ref={formRef} onFinish={onFinish}>
+      <Form
+        layout="vertical"
+        ref={formRef}
+        onFinish={onFinish}
+        initialValues={project}
+      >
         <Form.Item label="Project Name" name="name">
           <Input placeholder="Project Name" />
         </Form.Item>

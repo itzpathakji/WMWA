@@ -37,7 +37,7 @@ const getUser = async () => {
   }, []);
 
   return (
-    <div>
+    user && <div>
       <div className="flex justify-between items-center bg-primary text-white px-5 py-4 ">
         <h1 className='text-2xl cursor-pointer' onClick={() => navigate("/")}>
 
