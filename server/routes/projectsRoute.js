@@ -36,6 +36,21 @@ router.post("/get-all-projects", authMiddleware, async (req, res) => {
   }
 });
 
+router.post("/get-project-by-id", authMiddleware, async (req, res) => {
+  try {
+    const project = await Project.findById(req.body._id).populate("owner").populate("members.user");
+    res.send({
+      success: true,
+      data: project,
+    });
+  } catch (error) {
+    res.send({
+      error: error.message,
+      success: false,
+    });
+  }
+});
+
 router.post("/get-projects-by-role", authMiddleware, async (req, res) => {
   try {
    const userId = req.body.userId;
