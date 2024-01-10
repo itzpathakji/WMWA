@@ -21,10 +21,12 @@ button{
   box-shadow: none !important;
 }
 
-input{
+input , select{
   height: 40px !important;
   border-radius: 0 !important;
   border: 1px solid #bbbbbb !important;
+  width: 100% !important;
+  padding: left 15px !important;
 }
 
 textarea{
@@ -32,17 +34,19 @@ textarea{
   border: 1px solid #bbbbbb !important;
  
 }
-input:focus , textarea:focus{
+input:focus , textarea:focus , select:focus{
   box-shadow: none !important;
   border: 1px solid #343434 !important;
 }
 
 .ant-form-item{
   margin-bottom: 10px !important;
+ 
 }
 
 .ant-form-item-label{
   padding: 0px !important;
+
 }
 
 table{

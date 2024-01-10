@@ -16,9 +16,9 @@ function App() {
       {loading && <Spinner />}
      <BrowserRouter>
      <Routes>
-       <Route path ="/" element = {<ProtectedPage> <Home/> </ProtectedPage>} />
-       <Route path ="/Project/:id" element = {<ProtectedPage> <ProjectInfo/> </ProtectedPage>} />
-       <Route path ="/Profile" element = {<ProtectedPage> <Profile/> </ProtectedPage>} />
+       <Route path ="/" element = {(<ProtectedPage> <Home/> </ProtectedPage>)} />
+       <Route path ="/Project/:id" element = {(<ProtectedPage> <ProjectInfo/> </ProtectedPage>)} />
+       <Route path ="/Profile" element = {(<ProtectedPage> <Profile/> </ProtectedPage>)} />
        <Route path ="/Login" element = {<Login />} />
        <Route path ="/Register" element = {<Register />} />
      </Routes>

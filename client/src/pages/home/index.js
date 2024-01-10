@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetAllProjects, GetProjectsByRole } from '../../apicalls/projects';
+import {  GetProjectsByRole } from '../../apicalls/projects';
 import { SetLoading } from "../../redux/loadersSlice";
 import { message } from "antd";
 import { getDateFormat } from "../../utils/helpers.js";
@@ -48,7 +48,7 @@ function Home() {
         {
           projects.map((project) => (
             <div className='flex flex-col gap-1 border-solid border-gray-400 rounded-md p-2 cursor-pointer' 
-              onClick={() => navigate('/project/${project._id}')}>
+              onClick={() => navigate(`/project/${project._id}`)}>
 
               <h1 className='text-primary text-lg uppercase font-semibold'>{project.name}</h1>
 
