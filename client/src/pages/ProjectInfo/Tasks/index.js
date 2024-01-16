@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
+import { Button } from "antd";
+import TaskForm from "./TaskForm";
 
-function Tasks() {
+function Tasks(project) {
+  const [showTaskForm, setShowTaskForm] = React.useState(false);
   return (
-    <div>Tasks</div>
-  )
+    <div>
+      <div className="flex justify-end">
+        <Button type="default" onClick={() => setShowTaskForm(true)}>
+          Add Task
+        </Button>
+      </div>
+
+      {showTaskForm && (
+        <TaskForm
+          showTaskForm={showTaskForm}
+          setShowTaskForm={setShowTaskForm}
+          project={project}
+        />
+      )}
+    </div>
+  );
 }
 
-export default Tasks
+export default Tasks;
