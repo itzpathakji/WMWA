@@ -1,22 +1,80 @@
-import { Form, Input, Modal } from "antd";
+import { Form, Input, Modal, message } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SetLoading } from "../../../redux/loadersSlice";
+import { CreateTask } from "../../../apicalls/tasks";
 
-function TaskForm({ showTaskForm, setShowTaskForm, project }) {
+function TaskForm({ showTaskForm, setShowTaskForm, project,task }) {
   const [email, setEmail] = React.useState("");
-  console.log(project);
+  const { user } = useSelector((state) => state.users);
+  
   const formRef = React.useRef(null);
-  const onFinish = (values) => {};
+  const dispatch = useDispatch();
+  const onFinish =async (values) => {
+    try {
+      let response = null;
+      dispatch(SetLoading(true));
+      if(task){
 
+      }
+      else{
+        const assignedToMember = project.members.find(
+          (member) => member.user.email === email
+        );
+        const assignedToUserId = assignedToMember.user._id;
+
+        const assignedBy = user._id;
+        response = await CreateTask({
+          ...values,
+          project: project._id,
+          assignedTo: assignedToUserId,
+          assignedBy,
+        })
+      }
+
+      if(response.success){
+        message.success(response.message);
+        setShowTaskForm(false);
+      }
+      dispatch(SetLoading(false));
+    } catch (error) {
+      dispatch(SetLoading(false))
+      message.error(error.message)
+    }
+  };
+
+  // const validateEmail = () => {
+  //   const employeesInProject = project.members.filter(
+  //     (member) => member.role === "employee"
+  //   );
+  //   const isEmailValid = employeesInProject.find(
+  //     (employee) => employee.user.email === email
+  //   );
+  //   return isEmailValid ? true : false;
+  // };
   const validateEmail = () => {
-    const employeesInProject = project.members.filter(
+    console.log("project:", project); // Check if project is defined
+    console.log("project.members:", project?.members); // Check if project.members is defined
+  
+    const employeesInProject = project?.members?.filter(
       (member) => member.role === "employee"
     );
-    const isEmailValid = employeesInProject.find(
-      (employee) => employee.user.email === email
+    console.log("Entered Email:", email);
+    console.log("Employees in Project:", employeesInProject);
+    // Check if employeesInProject is not empty before proceeding
+    console.log("employeesInProject:", employeesInProject);
+  
+    const isEmailValid = employeesInProject?.find(
+      (employee) => employee.user.email.trim() === email.trim()
     );
+  
+    console.log("isEmailValid:", isEmailValid);
+  
     return isEmailValid ? true : false;
   };
+  
+  
   return (
     <Modal
       title="ADD TASK"
