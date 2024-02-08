@@ -1,73 +1,196 @@
-import { message } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { GetLoggedInUser } from '../apicalls/users'
-import { SetUser } from '../redux/usersSlice';
-import { useSelector , useDispatch} from 'react-redux';
-import { SetLoading } from '../redux/loadersSlice';
+// import { message } from 'antd'
+// import React, { useEffect, useState } from 'react'
+// import { useNavigate } from 'react-router-dom'
+// import { GetLoggedInUser } from '../apicalls/users'
+// import { SetUser } from '../redux/usersSlice';
+// import { useSelector , useDispatch} from 'react-redux';
+// import { SetLoading } from '../redux/loadersSlice';
+
+// function ProtectedPage({ children }) {
+// const navigate = useNavigate();
+// const dispatch = useDispatch();
+// const {user} = useSelector((state) => state.users);
+// const getUser = async () => { 
+//     try {
+//       dispatch(SetLoading(true))
+//       const response = await GetLoggedInUser()
+//       dispatch(SetLoading(false))
+//       if (response.success) {
+//           dispatch(SetUser(response.data));
+//       }
+//       else {
+//         throw new Error(response.message);
+//       }
+//     } catch (error) {
+//       dispatch(SetLoading(false))
+//       message.error(error.message);
+//       localStorage.removeItem('token');
+//       navigate('/login');
+//     }
+//   }
+//   useEffect(() => {
+//     if (localStorage.getItem("token")) {
+//       getUser();
+//     } else {
+//       navigate('/login');
+//     }
+//   }, []);
+
+//   return (
+//     user && <div>
+//       <div className="flex justify-between items-center bg-primary text-white px-5 py-4 ">
+//         <h1 className='text-2xl cursor-pointer' onClick={() => navigate("/")}>
+
+//           WMWA</h1>
+//         <div className='flex items-center bg-white px-5 py-2 rounded'>
+//           <span className=' text-primary cursor-pointer underline mr-2' onClick={() => {
+//             // localStorage.removeItem("token");
+//             navigate("/profile");
+//           }}>
+
+//             {user?.firstName}</span>
+//           <i className="ri-notification-2-line text-white mx-2 bg-gray-500 p-2 rounded-full"></i>
+//           <i className="ri-logout-box-line ml-10 text-primary"
+//             onClick={() => {
+//               localStorage.removeItem("token");
+//               navigate("/login");
+//             }}
+//           ></i>
+//         </div>
+
+//       </div>
+//       <div className="px-5 py-3">
+
+//         {children}
+
+//       </div>
+
+//     </div>
+
+//   );
+// }
+
+// export default ProtectedPage
+
+import { message } from "antd";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { GetLoggedInUser } from "../apicalls/users";
+import { SetNotifications, SetUser } from "../redux/usersSlice";
+import { SetLoading } from "../redux/loadersSlice";
+import { GetAllNotifications } from "../apicalls/notifications";
+import { Avatar, Badge, Space } from "antd";
+import Notifications from "./Notifications";
 
 function ProtectedPage({ children }) {
-const navigate = useNavigate();
-const dispatch = useDispatch();
-const {user} = useSelector((state) => state.users);
-const getUser = async () => { 
+  const [showNotifications, setShowNotifications] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, notifications } = useSelector((state) => state.users);
+  const getUser = async () => {
     try {
-      dispatch(SetLoading(true))
-      const response = await GetLoggedInUser()
-      dispatch(SetLoading(false))
+      dispatch(SetLoading(true));
+      const response = await GetLoggedInUser();
+      dispatch(SetLoading(false));
       if (response.success) {
-          dispatch(SetUser(response.data));
-      }
-      else {
+        dispatch(SetUser(response.data));
+      } else {
         throw new Error(response.message);
       }
     } catch (error) {
-      dispatch(SetLoading(false))
+      dispatch(SetLoading(false));
       message.error(error.message);
-      localStorage.removeItem('token');
-      navigate('/login');
+      localStorage.removeItem("token");
+      navigate("/login");
     }
-  }
+  };
+
+  const getNotifications = async () => {
+    try {
+      dispatch(SetLoading(true));
+      const response = await GetAllNotifications();
+      dispatch(SetLoading(false));
+      if (response.success) {
+        dispatch(SetNotifications(response.data));
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      dispatch(SetLoading(false));
+      message.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getUser();
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      getNotifications();
+    }
+  }, [user]);
+
   return (
-    user && <div>
-      <div className="flex justify-between items-center bg-primary text-white px-5 py-4 ">
-        <h1 className='text-2xl cursor-pointer' onClick={() => navigate("/")}>
+    user && (
+      <div>
+        <div className="flex justify-between items-center bg-primary text-white px-5 py-4">
+          <h1 className="text-2xl cursor-pointer" onClick={() => navigate("/")}>
+            WMWA
+          </h1>
 
-          WMWA</h1>
-        <div className='flex items-center bg-white px-5 py-2 rounded'>
-          <span className=' text-primary cursor-pointer underline mr-2' onClick={() => {
-            // localStorage.removeItem("token");
-            navigate("/profile");
-          }}>
+          <div className="flex items-center bg-white px-5 py-2 rounded">
+            <span
+              className=" text-primary cursor-pointer underline mr-2"
+              onClick={() => navigate("/profile")}
+            >
+              {user?.firstName}
+            </span>
+            <Badge
+              count={
+                notifications.filter((notification) => !notification.read)
+                  .length
+              }
+              className="cursor-pointer"
+            >
+              <Avatar
+                shape="square"
+                size="large"
+                icon={
+                  <i className="ri-notification-line text-white rounded-full"></i>
+                }
+                onClick={() => {
+                  setShowNotifications(true);
+                }}
+              />
+            </Badge>
 
-            {user?.firstName}</span>
-          <i className="ri-notification-2-line text-white mx-2 bg-gray-500 p-2 rounded-full"></i>
-          <i className="ri-logout-box-line ml-10 text-primary"
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
-          ></i>
+            <i
+              className="ri-logout-box-r-line ml-10 text-primary"
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate("/login");
+              }}
+            ></i>
+          </div>
         </div>
+        <div className="px-5 py-3">{children}</div>
 
+        {showNotifications && (
+          <Notifications
+            showNotifications={showNotifications}
+            setShowNotifications={setShowNotifications}
+            reloadNotifications={getNotifications}
+          />
+        )}
       </div>
-      <div className="px-5 py-3">
-
-        {children}
-
-      </div>
-
-    </div>
-
+    )
   );
 }
 
-export default ProtectedPage
+export default ProtectedPage;
