@@ -33,9 +33,10 @@ function Home() {
     getData();
   }, []);
   return (
-    <div>
-      <h1 className="text-primary text-xl">
-        Heyy {user?.firstName} {user?.lastName} , Welcome to WMWA
+    <div className=" ">
+      <h1 className="text-primary text-2xl text-bold uppercase">
+        {/* Hello, {user?.firstName} {user?.lastName} , Welcome */}
+        Dashboard
       </h1>
 
       <div className="grid grid-cols-4 gap-5 mt-5">

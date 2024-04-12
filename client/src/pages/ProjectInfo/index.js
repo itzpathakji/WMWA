@@ -49,18 +49,14 @@ function ProjectInfo() {
       <div>
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-primary text-2xl font-semibold uppercase">
+            <span className="flex">
+            <h1 className="text-primary text-4xl font-bold uppercase">
               {project?.name}
             </h1>
-            <span className="text-gray-600 text-sm">
-              {project?.description}
+            <span className="text-gray-600  mt-2 text-2xl font-semibold">
+               , {project?.description}
             </span>
-            <div className="flex gap-5">
-              <span className="text-gray-600 text-sm font-semibold">Role</span>
-              <span className="text-gray-600 text-sm uppercase">
-                {currentUserRole}
-              </span>
-            </div>
+            </span>
           </div>
           <div>
             <div className="flex gap-5">
@@ -75,9 +71,16 @@ function ProjectInfo() {
               <span className="text-gray-600 text-sm font-semibold">
                 Created By
               </span>
-              <span className="text-gray-600 text-sm">
+              <span className="text-gray-600 text-sm uppercase">
                 {project.owner.firstName} {project.owner.lastName}
               </span>
+            </div>
+            <div className="flex gap-12">
+              <span className="text-gray-600 text-sm font-semibold">Role</span>
+              <span className="text-gray-600 text-sm ml-4 uppercase">
+                  {currentUserRole}
+              </span>
+              
             </div>
           </div>
         </div>

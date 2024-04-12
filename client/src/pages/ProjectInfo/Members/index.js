@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RemoveMemberFromProject } from "../../../apicalls/projects";
 import { SetLoading } from "../../../redux/loadersSlice";
 import MemberForm from "./MemberForm";
+import "./Members.css";
 
 function Members({ project, reloadData }) {
   const [role, setRole] = React.useState("");
@@ -92,6 +93,7 @@ function Members({ project, reloadData }) {
       </div>
 
       <Table
+        className="mt-4 Aao_Beta"
         columns={columns}
         dataSource={project.members.filter((member) => {
           if (role === "") {
@@ -100,7 +102,6 @@ function Members({ project, reloadData }) {
             return member.role === role;
           }
         })}
-        className="mt-4"
       />
 
       {showMemberForm && (

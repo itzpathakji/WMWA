@@ -8,6 +8,7 @@ import { SetLoading } from "../redux/loadersSlice";
 import { GetAllNotifications } from "../apicalls/notifications";
 import { Avatar, Badge, Space } from "antd";
 import Notifications from "./Notifications";
+import "./protected.css";
 
 function ProtectedPage({ children }) {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -65,14 +66,14 @@ function ProtectedPage({ children }) {
   return (
     user && (
       <div>
-        <div className="flex justify-between items-center bg-primary text-white px-5 py-4">
+        <div className="grad flex justify-between items-center text-white px-5 py-4">
           <h1 className="text-2xl cursor-pointer" onClick={() => navigate("/")}>
             WMWA
           </h1>
 
           <div className="flex items-center bg-white px-5 py-2 rounded">
             <span
-              className=" text-primary cursor-pointer underline mr-2"
+              className=" text-primary cursor-pointer mr-2 uppercase"
               onClick={() => navigate("/profile")}
             >
               {user?.firstName}
@@ -97,7 +98,7 @@ function ProtectedPage({ children }) {
             </Badge>
 
             <i
-              className="ri-logout-box-r-line ml-10 text-primary"
+              className="ri-logout-box-r-line ml-3 text-primary"
               onClick={() => {
                 localStorage.removeItem("token");
                 navigate("/login");
