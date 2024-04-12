@@ -44,8 +44,8 @@ function Login() {
           </span>
         </div>
       </div>
-      <div className="flex justify-center items-center">
-        <div className="w-[420px]">
+      <div className=" flex justify-center items-center">
+        <div className="w-[420px] bgi ">
           <h1 className="text-2xl text-gray-700">LOGIN TO YOUR ACCOUNT</h1>
           <Divider />
           <Form layout="vertical" onFinish={onFinish}>
@@ -66,6 +66,7 @@ function Login() {
 
             <Button
               type="primary"
+              className="grade"
               htmlType="submit"
               block
               loading={buttonLoading}

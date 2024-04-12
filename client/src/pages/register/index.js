@@ -6,6 +6,7 @@ import { RegisterUser } from "../../apicalls/users";
 import { useDispatch, useSelector } from "react-redux";
 import { SetButtonLoading } from "../../redux/loadersSlice";
 import { getAntdFormInputRules } from "../../utils/helpers";
+import "./index.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Register() {
 
   return (
     <div className="grid grid-cols-2">
-      <div className="bg-primary h-screen flex flex-col justify-center items-center">
+      <div className="grad h-screen flex flex-col justify-center items-center">
         <div>
           <h1 className="text-7xl text-white">PROJECT-MANAGER</h1>
           <span className=" text-white mt-5">
@@ -80,6 +81,7 @@ function Register() {
 
             <Button
               type="primary"
+              className="grade"
               htmlType="submit"
               block
               loading={buttonLoading}
