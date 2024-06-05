@@ -5,7 +5,7 @@ const Task = require("../models/taskModel");
 const Project = require("../models/projectModel");
 const User = require("../models/userModel");
 const authMiddleware = require("../middlewares/authMiddleware");
-
+const cloudinary = require("../config/cloudinaryConfig");
 const multer = require("multer");
 
 // create a task
