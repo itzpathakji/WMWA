@@ -2,11 +2,11 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedPage from "./components/ProtectedPage";
 import Spinner from "./components/Spinner";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Home from "./pages/home";
+import Login from "./pages/login";
 import Profile from "./pages/Profile";
 import ProjectInfo from "./pages/ProjectInfo";
-import Register from "./pages/Register";
+import Register from "./pages/register";
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
