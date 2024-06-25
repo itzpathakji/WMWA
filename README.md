@@ -101,30 +101,30 @@ Work-Management-Web-App/
 │   ├── public/
 │   ├── src/
 |   |    ├── apicalls/
-|   |             ├── index.js
-|   |             ├── notifications.js
-|   |             ├── projects.js
-|   |             ├── tasks.js
-|   |             └── users.js
+|   |    |       ├── index.js
+|   |    |       ├── notifications.js
+|   |    |       ├── projects.js
+|   |    |       ├── tasks.js
+|   |    |       └── users.js
 |   |    ├── assets/
 │   |    ├── components/
-|   |             ├── Divider.js
-|   |             ├── Notifications.js
-|   |             ├──
-|   |             ├──
-|   |             └──
+|   |    |      ├── Divider.js
+|   |    |      ├── Notifications.js
+|   |    |      ├── protected.css
+|   |    |      ├── ProtectedPage.js
+|   |    |      └── Spinner.js
 │   |    ├── pages/
-|   |            ├──
-|   |            ├──
-|   |            ├──
-|   |            ├──
-|   |            └──
+|   |    |      ├── Home/
+|   |    |      ├── Login/
+|   |    |      ├── Profile/
+|   |    |      ├── ProjectInfo/
+|   |    |      └── Register/
 |   |    ├── redux/
-|   |            ├── loadersSlice.js
-|   |            ├── store.js
-|   |            └── usersSlice.js
+|   |    |      ├── loadersSlice.js
+|   |    |      ├── store.js
+|   |    |      └── usersSlice.js
 |   |    ├── utils/
-|   |           └── helper.js
+|   |    |       └── helper.js
 │   |    ├── App.js
 │   |    ├── index.js
 │   |    └── index.css
