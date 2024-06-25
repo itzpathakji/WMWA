@@ -115,10 +115,26 @@ Work-Management-Web-App/
 |   |    |      └── Spinner.js
 │   |    ├── pages/
 |   |    |      ├── Home/
+|   |    |      |     └──index.js
 |   |    |      ├── Login/
+|   |    |      |     ├── index.css
+|   |    |      |     └── index.js
 |   |    |      ├── Profile/
+|   |    |      |     ├── Projects/
+|   |    |      |     |      ├── index.js
+|   |    |      |     |      └── ProjectForm.js
+|   |    |      |     └── index.js
 |   |    |      ├── ProjectInfo/
+|   |    |      |     ├── Members/
+|   |    |      |     |      ├── index.js
+|   |    |      |     |      ├── MemberForm.js
+|   |    |      |     |      └── Members.css
+|   |    |      |     ├── Tasks/
+|   |    |      |     |      └── index.js
+|   |    |      |     └── index.js
 |   |    |      └── Register/
+|   |    |           ├── index.css
+|   |    |           └── index.js
 |   |    ├── redux/
 |   |    |      ├── loadersSlice.js
 |   |    |      ├── store.js
