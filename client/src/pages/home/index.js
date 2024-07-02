@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [projects, setProjects] = useState([]);
-  const { user } = useSelector((state) => state.users);
+  // const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
