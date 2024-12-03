@@ -2,10 +2,6 @@
 
 A full-stack Project Management web application built using the MERN stack (MongoDB, Express.js, React.js, Node.js), styled with Ant-D and Tailwind CSS.
 
-## Deployment
-
-You can find the live deployment of this project [here](https://work-management-web-app-3.onrender.com).
-
 ## Features
 
 - User Authentication with bcrypt.
@@ -17,6 +13,25 @@ You can find the live deployment of this project [here](https://work-management-
 - Team collaboration and communication tools
 - there is a notification feature added to let know the user about changes.
 - Responsive design with Ant-D
+
+## Screenshots
+
+Here are some screenshots of the application:
+
+### Register Page
+![Register Page](https://github.com/itzpathakji/WMWA/blob/main/Assets/Screenshot%202024-11-30%20191400.png)
+
+### Login Page
+![Login Page](https://github.com/itzpathakji/WMWA/blob/main/Assets/Screenshot%202024-11-30%20191357.png)
+
+### Dashboard Page
+![Home Page](https://github.com/itzpathakji/WMWA/blob/main/Assets/Screenshot%202024-11-30%20191317.png)
+
+### Project Management
+![Project Management](https://github.com/itzpathakji/WMWA/blob/main/Assets/Screenshot%202024-11-30%20191326.png)
+
+### Task Assignment
+![Task Assignment](https://github.com/itzpathakji/WMWA/blob/main/Assets/Screenshot%202024-11-30%20191330.png)
 
 ## Technologies Used
 
